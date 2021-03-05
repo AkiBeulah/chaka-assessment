@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: chaka_development
+  username: postgres
+  password: SECRET
+
+test:
+  <<: *default
+  database:  chaka_test
+  username: postgres
+  password: SECRET
+
+production:
+  <<: *default
+  database: chaka_production
+  username: chaka_api
+  password: <%= ENV['CHAKA_DATABASE_PASSWORD'] %>
